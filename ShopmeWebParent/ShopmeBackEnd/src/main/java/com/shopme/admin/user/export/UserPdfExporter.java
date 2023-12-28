@@ -1,4 +1,4 @@
-package com.shopme.admin.user;
+package com.shopme.admin.user.export;
 
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
@@ -7,6 +7,7 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.shopme.admin.user.AbstractExporter;
 import com.shopme.common.entity.User;
 
 import javax.servlet.http.HttpServletResponse;

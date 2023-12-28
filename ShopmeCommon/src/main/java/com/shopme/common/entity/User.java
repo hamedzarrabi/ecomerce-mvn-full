@@ -22,7 +22,7 @@ public class User {
     private String photos;
     @Column(name = "enabled")
     private boolean enabled;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -131,4 +131,5 @@ public class User {
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
 }

@@ -1,6 +1,9 @@
 package com.shopme.admin.user;
 
 import com.shopme.admin.FileUploadUtil;
+import com.shopme.admin.user.export.UserCsvExport;
+import com.shopme.admin.user.export.UserExcelExporter;
+import com.shopme.admin.user.export.UserPdfExporter;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/users")
-    public String listFirstPage(Model model) {
+    public String listFirstPage(Model model)  {
         return listByPage(1, model, "firstName", "asc", null);
     }
 
@@ -90,7 +93,7 @@ public class UserController {
 
         if (!multipartFile.isEmpty()) {
 
-            String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setPhotos(fileName);
             User savedUser = userService.save(user);
 
@@ -101,9 +104,9 @@ public class UserController {
         } else {
             if (user.getPhotos().isEmpty()) {
                 user.setPhotos(null);
-
-                userService.save(user);
             }
+            userService.save(user);
+
         }
 
         System.out.println(user);
@@ -133,7 +136,6 @@ public class UserController {
             model.addAttribute("user", user);
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             model.addAttribute("listRoles", listRoles);
-
 
             return "user_form";
 
