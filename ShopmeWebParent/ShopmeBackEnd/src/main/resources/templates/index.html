@@ -7,7 +7,11 @@
 <div class="container-fluid">
 
 <div class="" th:replace="navigation :: menu"></div>
-    <h1>Shopme Control Panel</h1>
+    <h2>Shopme Control Panel</h2>
+    Welcome
+    <a th:href="@{/account}"></a>
+    &nbsp;
+    <span sec:authentication="principal.authorities"></span>
 </div>
 
 <div class="" th:replace="fragments :: footer"></div>

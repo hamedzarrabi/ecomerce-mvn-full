@@ -1,6 +1,7 @@
-package com.shopme.admin.user;
+package com.shopme.admin.user.controller;
 
 import com.shopme.admin.FileUploadUtil;
+import com.shopme.admin.user.UserService;
 import com.shopme.admin.user.export.UserCsvExport;
 import com.shopme.admin.user.export.UserExcelExporter;
 import com.shopme.admin.user.export.UserPdfExporter;
@@ -20,7 +21,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -69,7 +69,7 @@ public class UserController {
         model.addAttribute("reverseSortDir", reverseSortDir);
         model.addAttribute("keyword", keyword);
 
-        return "users";
+        return "users/users";
     }
 
     @GetMapping("/users/new")
@@ -84,7 +84,7 @@ public class UserController {
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("pageTitle", "Create New User");
 
-        return "user_form";
+        return "users/user_form";
     }
 
     @PostMapping("/users/save")
@@ -137,7 +137,7 @@ public class UserController {
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             model.addAttribute("listRoles", listRoles);
 
-            return "user_form";
+            return "users/user_form";
 
         } catch (UsernameNotFoundException ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());
